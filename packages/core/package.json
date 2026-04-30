@@ -2,6 +2,12 @@
   "name": "@keyler_tamayo/tauri-easy-updater",
   "version": "0.1.0",
   "description": "Hassle-free auto-updates for Tauri apps. No signing keys required.",
+  "author": "Keyler Tamayo <keylertamayo@gmail.com>",
+  "keywords": ["tauri", "updater", "auto-update", "rust", "electron-alternative"],
+  "files": ["dist", "README.md", "LICENSE"],
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",

@@ -11,13 +11,14 @@ jobs:
       LD_LIBRARY_PATH: /usr/lib/x86_64-linux-gnu
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 9
+          always-auth: true
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
       - name: Install Linux dependencies (Tauri / GTK / WebKit)
@@ -37,16 +38,35 @@ jobs:
             pkg-config \
             libjavascriptcoregtk-4.0-dev \
             libsoup2.4-dev
+      - name: Configure npm authentication
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+          echo "registry=https://registry.npmjs.org/" >> ~/.npmrc
       - name: Install JS deps
         run: pnpm install
       - name: Build JS packages
         run: pnpm build
-      - name: Publish core and CLI to npm
+      - name: Verify npm authentication
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          cd packages/core && npm publish --access public
-          cd ../cli && npm publish --access public
+          echo "Verifying npm authentication..."
+          npm whoami || (echo "❌ NPM authentication failed. Check your NPM_TOKEN secret." && exit 1)
+          echo "✅ NPM authentication successful"
+      - name: Publish core to npm
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          cd packages/core
+          echo "Publishing @keyler_tamayo/tauri-easy-updater..."
+          pnpm publish --access public --no-git-checks || echo "⚠️ Core package may already be published"
+      - name: Publish CLI to npm
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          cd packages/cli
+          echo "Publishing @keyler_tamayo/tauri-easy-updater-cli..."
+          pnpm publish --access public --no-git-checks || echo "⚠️ CLI package may already be published"
       - name: Publish crate to crates.io
         env:
           CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}

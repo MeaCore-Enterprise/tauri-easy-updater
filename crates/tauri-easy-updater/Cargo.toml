@@ -3,8 +3,12 @@ name = "tauri-easy-updater"
 version = "0.1.0"
 edition = "2021"
 description = "Hassle-free auto-updates for Tauri apps. No signing keys required."
+authors = ["Keyler Tamayo <keylertamayo@gmail.com>"]
 license = "MIT"
 repository = "https://github.com/keylertamayo/tauri-easy-updater"
+keywords = ["tauri", "updater", "auto-update", "plugin"]
+categories = ["gui", "web-programming"]
+readme = "README.md"
 
 [dependencies]
 tauri = { version = "1", features = [] }

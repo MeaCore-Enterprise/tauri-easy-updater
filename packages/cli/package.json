@@ -2,6 +2,12 @@
   "name": "@keyler_tamayo/tauri-easy-updater-cli",
   "version": "0.1.0",
   "description": "CLI for generating and publishing manifests for tauri-easy-updater.",
+  "author": "Keyler Tamayo <keylertamayo@gmail.com>",
+  "keywords": ["tauri", "updater", "cli", "manifest", "auto-update"],
+  "files": ["dist", "README.md", "LICENSE"],
+  "publishConfig": {
+    "access": "public"
+  },
   "bin": {
     "tauri-eu": "./dist/index.cjs"
   },
