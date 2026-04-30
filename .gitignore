@@ -29,6 +29,7 @@ Thumbs.db
 # IDE / editors
 .idea/
 .vscode/
+.windsurf/
 *.swp
 *.swo
 
