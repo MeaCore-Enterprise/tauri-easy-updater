@@ -44,9 +44,8 @@ jobs:
         run: |
           set -euo pipefail
           # Use an npm automation token if your account has 2FA enabled.
-          npm config set //registry.npmjs.org/:_authToken "${NPM_TOKEN}"
-          npm config set registry "https://registry.npmjs.org/"
-          npm config set always-auth true
+          NPMRC="${NPM_CONFIG_USERCONFIG:-$HOME/.npmrc}"
+          printf "//registry.npmjs.org/:_authToken=%s\nregistry=https://registry.npmjs.org/\n" "$NPM_TOKEN" > "$NPMRC"
       - name: Install JS deps
         run: pnpm install
       - name: Build JS packages
