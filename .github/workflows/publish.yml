@@ -11,14 +11,14 @@ jobs:
       LD_LIBRARY_PATH: /usr/lib/x86_64-linux-gnu
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 9
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org
           always-auth: true
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
       - name: Install Linux dependencies (Tauri / GTK / WebKit)
@@ -39,9 +39,14 @@ jobs:
             libjavascriptcoregtk-4.0-dev \
             libsoup2.4-dev
       - name: Configure npm authentication
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
-          echo "registry=https://registry.npmjs.org/" >> ~/.npmrc
+          set -euo pipefail
+          # Use an npm automation token if your account has 2FA enabled.
+          npm config set //registry.npmjs.org/:_authToken "${NPM_TOKEN}"
+          npm config set registry "https://registry.npmjs.org/"
+          npm config set always-auth true
       - name: Install JS deps
         run: pnpm install
       - name: Build JS packages
