@@ -63,14 +63,14 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           cd packages/core
-          echo "Publishing @keyler_tamayo/tauri-easy-updater..."
+          echo "Publishing @meacore/tauri-easy-updater..."
           pnpm publish --access public --no-git-checks || echo "⚠️ Core package may already be published"
       - name: Publish CLI to npm
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           cd packages/cli
-          echo "Publishing @keyler_tamayo/tauri-easy-updater-cli..."
+          echo "Publishing @meacore/tauri-easy-updater-cli..."
           pnpm publish --access public --no-git-checks || echo "⚠️ CLI package may already be published"
       - name: Publish crate to crates.io
         env:

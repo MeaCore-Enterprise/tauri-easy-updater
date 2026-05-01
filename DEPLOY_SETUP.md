@@ -18,8 +18,8 @@ Los paquetes **NO están publicados** aún en npm ni crates.io.
 - `.windsurf/workflows/check-status.md` - Comando `/check-status` para verificar estado
 
 ### Metadata de paquetes (actualizada)
-- `packages/core/package.json` - Metadata npm para @keyler_tamayo/tauri-easy-updater
-- `packages/cli/package.json` - Metadata npm para @keyler_tamayo/tauri-easy-updater-cli
+- `packages/core/package.json` - Metadata npm para @meacore/tauri-easy-updater
+- `packages/cli/package.json` - Metadata npm para @meacore/tauri-easy-updater-cli
 - `crates/tauri-easy-updater/Cargo.toml` - Metadata para crates.io
 
 ### Documentación y licencias (creadas)
@@ -43,8 +43,8 @@ Si tienes 2FA habilitado en npm (recomendado), debes crear un token especial:
 3. Configura:
    - **Name**: `github-actions-publish`
    - **Packages and scopes**: Selecciona "Read and write" para tus paquetes
-     - `@keyler_tamayo/tauri-easy-updater`
-     - `@keyler_tamayo/tauri-easy-updater-cli`
+     - `@meacore/tauri-easy-updater`
+     - `@meacore/tauri-easy-updater-cli`
    - **Organizations**: No necesitas acceso a orgs
    - **⚠️ IMPORTANTE**: Marca "Bypass 2FA for this token"
 4. Genera el token y cópialo
@@ -84,8 +84,8 @@ Opción B - Usar GitHub Actions:
 
 O manualmente:
 ```bash
-npm view @keyler_tamayo/tauri-easy-updater
-npm view @keyler_tamayo/tauri-easy-updater-cli
+npm view @meacore/tauri-easy-updater
+npm view @meacore/tauri-easy-updater-cli
 cargo search tauri-easy-updater
 ```
 
@@ -100,6 +100,6 @@ cargo search tauri-easy-updater
 
 ## Notas
 
-- Los paquetes npm se publican como públicos (scope @keyler_tamayo)
+- Los paquetes npm se publican como públicos (scope @meacore)
 - El crate de Rust requiere estar en crates.io antes de que otros puedan usarlo
 - Los workflows de GitHub Actions usan ubuntu-22.04 para compatibilidad con Tauri v1

@@ -29,8 +29,8 @@ Crea un nuevo release de tauri-easy-updater con changelog y git tag.
 // turbo
 3. Actualizar versión en todos los paquetes:
    - `package.json` (raíz) - versión del monorepo
-   - `packages/core/package.json` - `@keyler_tamayo/tauri-easy-updater`
-   - `packages/cli/package.json` - `@keyler_tamayo/tauri-easy-updater-cli`
+   - `packages/core/package.json` - `@meacore/tauri-easy-updater`
+   - `packages/cli/package.json` - `@meacore/tauri-easy-updater-cli`
    - `crates/tauri-easy-updater/Cargo.toml` - crate de Rust
 
    Usar semver: patch (0.0.1), minor (0.1.0), o major (1.0.0)

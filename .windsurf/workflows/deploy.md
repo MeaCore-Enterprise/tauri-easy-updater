@@ -4,7 +4,7 @@ description: Publicar paquetes en npm y crates.io
 
 # Deploy - Publicar tauri-easy-updater
 
-Publica los paquetes npm (`@keyler_tamayo/tauri-easy-updater` y `@keyler_tamayo/tauri-easy-updater-cli`) y el crate de Rust en crates.io.
+Publica los paquetes npm (`@meacore/tauri-easy-updater` y `@meacore/tauri-easy-updater-cli`) y el crate de Rust en crates.io.
 
 ## Requisitos previos
 
@@ -19,8 +19,8 @@ Si tienes 2FA habilitado en npm, debes crear un **Granular Access Token** con "B
 3. Configura:
    - **Name**: `github-actions-publish`
    - **Packages and scopes**: Read and write para:
-     - `@keyler_tamayo/tauri-easy-updater`
-     - `@keyler_tamayo/tauri-easy-updater-cli`
+     - `@meacore/tauri-easy-updater`
+     - `@meacore/tauri-easy-updater-cli`
    - **⚠️ IMPORTANTE**: Marca "Bypass 2FA for this token"
 4. Copia el token y guárdalo en GitHub Secrets como `NPM_TOKEN`
 
@@ -85,7 +85,7 @@ Si prefieres publicar manualmente en lugar de usar GitHub Actions:
 // turbo
 7. Verificar que los paquetes están disponibles:
    ```bash
-   npm view @keyler_tamayo/tauri-easy-updater
-   npm view @keyler_tamayo/tauri-easy-updater-cli
+   npm view @meacore/tauri-easy-updater
+   npm view @meacore/tauri-easy-updater-cli
    cargo search tauri-easy-updater
    ```
