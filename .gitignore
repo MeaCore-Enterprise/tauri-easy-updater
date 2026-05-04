@@ -35,3 +35,6 @@ Thumbs.db
 
 # Tauri
 src-tauri/target/
+
+# Documentation
+DEPLOY_SETUP.md
