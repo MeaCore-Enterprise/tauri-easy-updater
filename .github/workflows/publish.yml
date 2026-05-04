@@ -11,14 +11,14 @@ jobs:
       LD_LIBRARY_PATH: /usr/lib/x86_64-linux-gnu
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 9
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org
           always-auth: true
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
       - name: Install Linux dependencies (Tauri / GTK / WebKit)
@@ -39,9 +39,13 @@ jobs:
             libjavascriptcoregtk-4.0-dev \
             libsoup2.4-dev
       - name: Configure npm authentication
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
-          echo "registry=https://registry.npmjs.org/" >> ~/.npmrc
+          set -euo pipefail
+          # Use an npm automation token if your account has 2FA enabled.
+          NPMRC="${NPM_CONFIG_USERCONFIG:-$HOME/.npmrc}"
+          printf "//registry.npmjs.org/:_authToken=%s\nregistry=https://registry.npmjs.org/\n" "$NPM_TOKEN" > "$NPMRC"
       - name: Install JS deps
         run: pnpm install
       - name: Build JS packages
@@ -58,14 +62,14 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           cd packages/core
-          echo "Publishing @keyler_tamayo/tauri-easy-updater..."
+          echo "Publishing @meacore/tauri-easy-updater..."
           pnpm publish --access public --no-git-checks || echo "⚠️ Core package may already be published"
       - name: Publish CLI to npm
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           cd packages/cli
-          echo "Publishing @keyler_tamayo/tauri-easy-updater-cli..."
+          echo "Publishing @meacore/tauri-easy-updater-cli..."
           pnpm publish --access public --no-git-checks || echo "⚠️ CLI package may already be published"
       - name: Publish crate to crates.io
         env:

@@ -9,15 +9,15 @@ Verifica si los paquetes están publicados y muestra su versión actual.
 ## Verificar estado de npm
 
 // turbo
-1. Verificar `@keyler_tamayo/tauri-easy-updater`:
+1. Verificar `@meacore/tauri-easy-updater`:
    ```bash
-   npm view @keyler_tamayo/tauri-easy-updater versions --json
+   npm view @meacore/tauri-easy-updater versions --json
    ```
 
 // turbo
-2. Verificar `@keyler_tamayo/tauri-easy-updater-cli`:
+2. Verificar `@meacore/tauri-easy-updater-cli`:
    ```bash
-   npm view @keyler_tamayo/tauri-easy-updater-cli versions --json
+   npm view @meacore/tauri-easy-updater-cli versions --json
    ```
 
 ## Verificar estado de crates.io
@@ -43,8 +43,8 @@ Verifica si los paquetes están publicados y muestra su versión actual.
 5. Mostrar versiones publicadas:
    ```bash
    echo "=== Published versions ==="
-   echo "Core npm: $(npm view @keyler_tamayo/tauri-easy-updater version 2>/dev/null || echo 'NOT PUBLISHED')"
-   echo "CLI npm: $(npm view @keyler_tamayo/tauri-easy-updater-cli version 2>/dev/null || echo 'NOT PUBLISHED')"
+   echo "Core npm: $(npm view @meacore/tauri-easy-updater version 2>/dev/null || echo 'NOT PUBLISHED')"
+   echo "CLI npm: $(npm view @meacore/tauri-easy-updater-cli version 2>/dev/null || echo 'NOT PUBLISHED')"
    echo "Crate: $(curl -s https://crates.io/api/v1/crates/tauri-easy-updater | grep -o '"max_stable_version":"[^"]*"' | cut -d'"' -f4)"
    ```
 

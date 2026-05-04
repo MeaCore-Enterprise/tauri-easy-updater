@@ -1,11 +1,11 @@
-# @keyler_tamayo/tauri-easy-updater
+# @meacore/tauri-easy-updater
 
 Hassle-free auto-updates for Tauri apps. No signing keys required.
 
 ## Installation
 
 ```bash
-npm install @keyler_tamayo/tauri-easy-updater
+npm install @meacore/tauri-easy-updater
 ```
 
 ## Usage
@@ -15,7 +15,7 @@ import {
   useUpdateChecker,
   UpdateBanner,
   createGitHubProvider,
-} from '@keyler_tamayo/tauri-easy-updater';
+} from '@meacore/tauri-easy-updater';
 
 function App() {
   const { updateInfo, dismiss } = useUpdateChecker({
